@@ -7,10 +7,17 @@
       xmlns:p="http://primefaces.org/ui">
     <f:view>
         <h:head>
-            <title>Facelet Title</title>
+            <title>Inicio</title>
+            <h:outputStylesheet name="css/estilos.css"/>
         </h:head>
         <h:body>
-            Hello from Facelets
+            <h:form>
+                <p:inputText id="nombre" value="#{agregaUsuario.nombre}" placeholder="Nombre"/> <br/>
+                <p:inputText id="correo" value="#{agregaUsuario.correo}" placeholder="Correo"/> <br/>
+                <p:password id="constrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia"/> <br/>
+                <p:calendar id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" placeholder="Fecha de nacimiento"/> <br/>
+                <p:commandButton action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+            </h:form>
         </h:body>
     </f:view>
 </html>
