@@ -17,8 +17,8 @@ import javax.faces.bean.SessionScoped;
  * @author jonathan
  */
 @ManagedBean
-//@SessionScoped
-@RequestScoped
+@SessionScoped
+//@RequestScoped
 public class BuscaPorNombre {
     private String nombre;
     
