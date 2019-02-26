@@ -11,13 +11,46 @@
             <h:outputStylesheet name="css/estilos.css"/>
         </h:head>
         <h:body>
-            <h:form>
-                <p:inputText id="nombre" value="#{agregaUsuario.nombre}" placeholder="Nombre"/> <br/>
-                <p:inputText id="correo" value="#{agregaUsuario.correo}" placeholder="Correo"/> <br/>
-                <p:password id="constrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia"/> <br/>
-                <p:calendar id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" placeholder="Fecha de nacimiento"/> <br/>
-                <p:commandButton action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
-            </h:form>
+            <header>
+                <h1>Mapita</h1>
+                <h:form id="busqueda">
+                    <p:inputText type="search " value="#{buscaPorNombre.nombre}"/>
+                    <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre"/>
+                </h:form>
+            </header>
+            <main>
+                <section>
+                    <div id="colores">
+                        <div id="rojo" class="color"></div>
+                        <div id="naranja" class="color"></div>
+                        <div id="amarillo" class="color"></div>
+                        <div id="verde" class="color"></div>
+                        <div id="azul" class="color"></div>
+                        <div id="anil" class="color"></div>
+                        <div id="violeta" class="color"></div>
+                        
+                    </div>
+                    <div id="mapa"></div>
+                </section>
+                <aside>
+                    <h2>
+                        Registrate
+                    </h2>
+                    <h:form>
+                        <p:inputText id="nombre" value="#{agregaUsuario.nombre}" placeholder="Nombre"/> <br/>
+                        <p:inputText id="correo" value="#{agregaUsuario.correo}" placeholder="Correo"/> <br/>
+                        <p:password id="constrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia"/> <br/>
+                        <p:calendar id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" placeholder="Fecha de nacimiento"/> <br/>
+                        <p:commandButton action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+                    </h:form>
+                </aside>
+            </main>
+            <footer>
+                <h3>
+                    Lorem ipsum dolor sit amet.
+                </h3>
+            </footer>
+
         </h:body>
     </f:view>
 </html>
