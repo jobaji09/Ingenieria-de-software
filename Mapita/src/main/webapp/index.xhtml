@@ -9,17 +9,25 @@
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputScript name="js/colores.js"/>
         </h:head>
         <h:body>
             <header>
                 <h1>Mapita</h1>
                 <h:form id="busqueda">
-                    <p:inputText type="search " value="#{buscaPorNombre.nombre}"/>
-                    <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre"/>
+                    <p:message for="search"/>
+                    <p:inputText type="search" id="search" value="#{buscaPorNombre.nombre}" required="true" requiredMessage="No hay personas sin nombre"/>
+                    <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre" update="busqueda"/>
                 </h:form>
+                
             </header>
             <main>
                 <section>
+                    <div id="mapa"></div>
+                </section>
+               
+                <aside>
+                    
                     <div id="colores">
                         <div id="rojo" class="color"></div>
                         <div id="naranja" class="color"></div>
@@ -28,20 +36,39 @@
                         <div id="azul" class="color"></div>
                         <div id="anil" class="color"></div>
                         <div id="violeta" class="color"></div>
-                        
                     </div>
-                    <div id="mapa"></div>
-                </section>
-                <aside>
+   
                     <h2>
                         Registrate
                     </h2>
                     <h:form>
-                        <p:inputText id="nombre" value="#{agregaUsuario.nombre}" placeholder="Nombre"/> <br/>
-                        <p:inputText id="correo" value="#{agregaUsuario.correo}" placeholder="Correo"/> <br/>
-                        <p:password id="constrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia"/> <br/>
-                        <p:calendar id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" placeholder="Fecha de nacimiento"/> <br/>
-                        <p:commandButton action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
+                        <p:inputText class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
+                        <p:inputText class="texto" id="correo" value="#{agregaUsuario.correo}" required="true" placeholder="Correo" validatorMessage="Debe ser un correo valido"> 
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText> <br/>
+                        <p:password class="texto" id="contrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia" match="contr" required="true" validatorMessage="No coinciden las contrasenias"/> <br/>
+                        <p:password class="texto" id="contr" value="#{agregaUsuario.contrasenia}" placeholder="Confirma" required="true"/> <br/>
+                        <p:calendar class="texto" id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" required="true" placeholder="Fecha de nacimiento" requiredMessage="Por favor ingresa tu nombre"  /> <br/>
+                        <p:commandButton class="texto" action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+                    </h:form>
+                    <br/>
+                    <p:separator />
+                    <br/>
+                    <h:form id="login">
+
+                        <p:inputText class="texto" id="email" value="#{controladorSesion.correo}" placeholder="Correo" required="true" requiredMessage="Por favor ingresa tu correo" validatorMessage="Debe ser un correo valido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText> <br/>
+                        <p:message for="email"/>
+                        <p:password class="texto" id="password" value="#{controladorSesion.contrasenia}" placeholder="Contrasenia"  required="true" requiredMessage="Por favor ingresa tu contrasenia"/> <br/>
+                        <p:message for="password"/>
+                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="login" update="login" />
+                        
                     </h:form>
                 </aside>
             </main>

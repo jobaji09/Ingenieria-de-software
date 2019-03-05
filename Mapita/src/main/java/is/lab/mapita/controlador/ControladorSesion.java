@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ControladorSesion {
     private String correo;
-    private String contrasesnia;
+    private String contrasenia;
 
     public String getCorreo() {
         return correo;
@@ -28,13 +28,15 @@ public class ControladorSesion {
         this.correo = correo;
     }
 
-    public String getContrasesnia() {
-        return contrasesnia;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContrasesnia(String contrasesnia) {
-        this.contrasesnia = contrasesnia;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
+
+   
     
     public String login(){
         Usuario user = null;
