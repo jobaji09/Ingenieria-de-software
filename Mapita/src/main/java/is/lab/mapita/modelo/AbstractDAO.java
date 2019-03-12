@@ -101,7 +101,7 @@ public abstract class AbstractDAO<T> {
      */
     protected T find(Class clazz, int id){
         T obj =null;
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
@@ -126,11 +126,12 @@ public abstract class AbstractDAO<T> {
      */
     protected List<T> findAll(Class clazz){
         List<T> obj =null;
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "From"+clazz;
+            String hql = "from "+clazz.getName();
+            System.out.println(hql);
             Query query = session.createQuery(hql);
             obj = (List<T>)query.list();
             tx.commit();
