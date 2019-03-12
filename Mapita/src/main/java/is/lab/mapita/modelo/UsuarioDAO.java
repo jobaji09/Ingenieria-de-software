@@ -92,4 +92,27 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
         return usuarios;
     }
     
+    public Usuario buscaPorCorreoContrasenia(String correo,String contrasenia){
+        Usuario u =null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx =null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Usuario where correo = :correo and contrasenia = :contrasenia";
+            Query query = session.createQuery(hql);
+            query.setParameter("correo", correo);
+            query.setParameter("contrasenia",contrasenia);
+            u = (Usuario)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return u;
+    }
+    
 }
