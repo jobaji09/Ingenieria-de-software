@@ -47,6 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.username">mayonesa</property>
     <property name="hibernate.connection.password">qwerty</property>
     <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="is/lab/mapita/modelo/Marcador.hbm.xml"/>
     <mapping resource="is/lab/mapita/modelo/Usuario.hbm.xml"/>

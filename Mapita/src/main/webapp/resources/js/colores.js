@@ -14,5 +14,8 @@ $(document).ready(function(){
            $('aside').css({'background':color});
        });
    });
+//   initMap();
 });
-    
+
+//                
+           
