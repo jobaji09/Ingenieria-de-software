@@ -25,7 +25,7 @@ body *{
     /*outline: 1px solid #abc;*/
 }
 body{
-    background-color: #c4d8ff;
+    background-color: #85929e ;
 }
 
 header{
@@ -61,10 +61,13 @@ main{
     height: 87vh;
     margin: 5px auto;
     overflow:  hidden;
-    border-radius: 20px;
+    border-radius: 50%;
+    transition: border-radius 2s;
     
 }
-
+main:hover{
+    border-radius: 0%;
+}
 #main{
     width: 97%;
     height: 45vh;
