@@ -30,13 +30,32 @@ body{
 
 header{
     width: 97%;
-    height: 10%;
+    height: 12%;
     background-color: #bcbcbc;
     padding: 10px;
     margin: 10px auto;
     border-radius: 10px;
 }
+#link{
+    /*background-color: red;*/
+    width: 100%;
+    height: 50%;
+}
 
+header>nav{
+    width: 100%;
+    height: 50%;
+    /*background: black;*/
+}
+li{
+    list-style: none;
+}
+
+#contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
 main{
     width: 97%;
     height: 87vh;
@@ -48,7 +67,7 @@ main{
 
 #main{
     width: 97%;
-    height: 40vh;
+    height: 45vh;
     margin: 5px auto;
     border-radius: 10px;
     background-color: black;
@@ -96,10 +115,10 @@ footer{
     
 }
 
-#busqueda{
+/*#busqueda{
     float: right;
     
-}
+}*/
 header>h1{
     float: left;
 }
@@ -135,7 +154,7 @@ header>h1{
     width: 100%;
     height: 100%;
 }
-#formulario{
+.formulario{
     margin:5px auto;
     width: 90%;
     

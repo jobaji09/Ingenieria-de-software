@@ -19,15 +19,9 @@
         </h:head>
         <h:body>
             <header>
-                <h1>Mapita</h1>
-                <h:form id="busqueda">
-                    <p:message for="search"/>
-                    <p:inputText type="search" id="search" value="#{buscaPorNombre.nombre}" required="true" requiredMessage="No hay personas sin nombre"/>
-                    <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre" update="busqueda"/>
-                </h:form>
-                <h:form id="logout" rendered="#{not empty user}">
-                    <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
-                </h:form>
+                <ui:insert name="header" >
+		  <ui:include src="/template/header.xhtml" />
+		</ui:insert>
                 
             </header>
             <main>
@@ -38,8 +32,6 @@
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
  
-                                    <!--<p:graphicImage name="/demo/images/antalya/{infoWindowView.marker.data}" height="150" />-->
-                                    <!--<br />-->
                                     <h:outputText value="#{verMarcadores.marker.title}" />
                                     <br/>
                                     <h:outputText value="#{verMarcadores.marker.data}"/>
@@ -69,11 +61,11 @@
                         </c:if>
                     </h2>
                     
-                    <h:form rendered="#{empty user}" id="formulario">
+                    <h:form rendered="#{empty user}" id="form" class="formulario">
                         <p:messages id="messages" showDetail="true" closable="true">
                             <p:autoUpdate />
                         </p:messages>
-                        <p:inputText class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
+                        <p:inputText  class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
                         <p:inputText class="texto" id="correo" value="#{agregaUsuario.correo}" required="true" placeholder="Correo" validatorMessage="Debe ser un correo valido"> 
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
@@ -118,9 +110,9 @@
                 </aside>
             </div>
             <footer>
-                <h3>
-                    Lorem ipsum dolor sit amet.
-                </h3>
+                <ui:insert name="footer" >
+		  <ui:include src="/template/footer.xhtml" />
+		</ui:insert>
             </footer>
             
              

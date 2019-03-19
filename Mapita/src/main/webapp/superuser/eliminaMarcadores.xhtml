@@ -15,19 +15,18 @@ and open the template in the editor.
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=Tu-APIKEY">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA">
             </script>
         </h:head>
         <h:body>
             
             <header>
-                <h:form id="logout">
-                    <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
-                </h:form>
+                <ui:insert name="header" >
+		  <ui:include src="/template/header.xhtml" />
+		</ui:insert>
             </header>
             <main>
-                <section>
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadoresUsuario.simpleModel}" mapTypeControl="false" navigationControl="false" draggable="false" >
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadoresUsuario.simpleModel}" mapTypeControl="false" navigationControl="false" draggable="false" >
                         <p:ajax event="overlaySelect" listener="#{eliminaMarcador.onMarkerSelect}" update="form form2"/>
                         
                     </p:gmap>
@@ -42,27 +41,31 @@ and open the template in the editor.
                             <p:commandButton id="eliminaMarcador" value="Elimina Marcador" action="#{eliminaMarcador.eliminaMarcador()}" update="mapa" />
                         </h:form>
                     </p:dialog> 
-                    
-                </section>
-                <aside>
-                    <p:link outcome="/superuser/perfilsuperuser" value="Ver Perfil" /> <br/>
-                    <h:form id="form2">
+            </main>
+            <div id="main">
+                <section>
+                    <h:form id="form2" class="formulario">
                             <p:messages id="messages" showDetail="true" closable="true">
                                 <p:autoUpdate />
                             </p:messages>
                             <p:inputNumber  decimalPlaces="6" id="lng" value="#{eliminaMarcador.lng}" disabled="true"/> <br/>
                             <p:inputNumber id="lat" decimalPlaces="6" value="#{eliminaMarcador.lat}" disabled="true"/><br/>
                             <p:commandButton id="eliminaMarcador" value="Elimina Marcador" action="#{eliminaMarcador.eliminaMarcadorv2()}" update="form" />
-                        </h:form>
+                    </h:form>
+                    
+                </section>
+                <aside>
+                    <p style="color: white">Para eliminar un marcador debes darle click</p>
+                    
                     
                 </aside>
-            </main>
+            </div>
             <footer>
-                Hola
+                <ui:insert name="footer" >
+		  <ui:include src="/template/footer.xhtml" />
+		</ui:insert>
             </footer>
-            <script>
-                
-            </script>
+           
         </h:body>
     </f:view>
 </html>
