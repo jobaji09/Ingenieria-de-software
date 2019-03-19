@@ -26,5 +26,11 @@
             </key>
             <one-to-many class="is.lab.mapita.modelo.Marcador" />
         </set>
+        <property name="rol">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">is.lab.mapita.modelo.Rol</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>

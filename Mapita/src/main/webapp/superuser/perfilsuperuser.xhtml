@@ -9,12 +9,13 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:view>
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=TU-APIKEY">
             </script>
         </h:head>
         <h:body>
@@ -23,6 +24,7 @@ and open the template in the editor.
                 <h:form id="logout">
                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
                 </h:form>
+                <h1>Hola #{user.nombre} #{user.rol}</h1>
             </header>
             <main>
                 <section>
@@ -32,7 +34,8 @@ and open the template in the editor.
                     </p:gmap>
                 </section>
                 <aside>
-                    <h1>Hola #{user.nombre} </h1><br/><h3>Agrega un marcador</h3> 
+                    <h3>Agrega un marcador</h3> 
+                    
                     <h:form id="form">
                         <p:messages id="messages" showDetail="true" closable="true">
                             <p:autoUpdate />
@@ -40,8 +43,12 @@ and open the template in the editor.
                         <p:inputNumber  decimalPlaces="6" id="longitud" value="#{agregaMarcador.longitud}" disabled="true"/>
                         <p:inputNumber id="latitud" decimalPlaces="6" value="#{agregaMarcador.latitud}" disabled="true"/>
                         <p:inputTextarea id="descripcion" placeholder="Descripcion" value="${agregaMarcador.descripcion}"  required="true"/>
-                        <p:commandButton id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}"/>
+                        <p:commandButton id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}" update="form"/>
                     </h:form>
+                    <br/>
+                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" />
+                    
+                    
                 </aside>
             </main>
             <footer>

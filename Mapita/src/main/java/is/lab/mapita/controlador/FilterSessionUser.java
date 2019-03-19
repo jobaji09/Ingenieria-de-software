@@ -6,6 +6,7 @@
 package is.lab.mapita.controlador;
 
 
+import is.lab.mapita.modelo.Rol;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @WebFilter("/user/*")
-public class FilterSession implements Filter {
+public class FilterSessionUser implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -40,7 +41,12 @@ public class FilterSession implements Filter {
             res.sendRedirect(req.getContextPath() + "/index.xhtml"); // Si no se encuentra el usuario redire al index.
         }
         else {
-            chain.doFilter(req, res); // esta logueado se continua con lo que se solicito.
+            ControladorSesion.UserLogged u = (ControladorSesion.UserLogged) session.getAttribute("user");
+            if(u.getRol()==Rol.USER){
+                chain.doFilter(req, res); // esta logueado se continua con lo que se solicito.
+            }else{
+                res.sendRedirect(req.getContextPath() + "/index.xhtml");
+            }
         }
     }
 

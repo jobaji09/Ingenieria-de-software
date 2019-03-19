@@ -5,22 +5,35 @@
  */
 package is.lab.mapita.controlador;
 
+import is.lab.mapita.modelo.Rol;
 import is.lab.mapita.modelo.Usuario;
 import is.lab.mapita.modelo.UsuarioDAO;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author jonathan
  */
 @ManagedBean
+@RequestScoped
 public class AgregaUsuario {
     private String nombre;
     private String correo;
     private String contrasenia;
     private Date fechanacimiento;
+    private String rol;
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -59,6 +72,12 @@ public class AgregaUsuario {
         u.setCorreo(correo);
         u.setContrasenia(contrasenia);
         u.setFechanacimiento(fechanacimiento);
+        if(this.rol.equals("user")){
+            u.setRol(Rol.USER);
+        }else{
+            u.setRol(Rol.SUPERUSER);
+        }
+            
         UsuarioDAO udb = new UsuarioDAO();
         udb.save(u);
         

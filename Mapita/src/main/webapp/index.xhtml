@@ -12,7 +12,7 @@
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA">
             </script>
             
             
@@ -31,9 +31,9 @@
                 
             </header>
             <main>
-                <section>
+                
                     
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}" >
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
                         <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
@@ -46,11 +46,10 @@
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap>
-                    
-                </section>
-               
-                <aside>
-                    
+                
+            </main>
+            <div id="main">
+                <section>
                     <div id="colores">
                         <div id="rojo" class="color"></div>
                         <div id="naranja" class="color"></div>
@@ -69,7 +68,8 @@
                             #{user.nombre}
                         </c:if>
                     </h2>
-                    <h:form rendered="#{empty user}">
+                    
+                    <h:form rendered="#{empty user}" id="formulario">
                         <p:messages id="messages" showDetail="true" closable="true">
                             <p:autoUpdate />
                         </p:messages>
@@ -78,11 +78,22 @@
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                         </p:inputText> <br/>
+                        <p:selectOneMenu id="rol" value="#{agregaUsuario.rol}" style="width: 100%">
+                            <f:selectItem itemLabel="User" itemValue="user" />
+                            <f:selectItem itemLabel="SuperUser" itemValue="superuser" />
+                        </p:selectOneMenu>
                         <p:password class="texto" id="contrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia" match="contr" required="true" validatorMessage="No coinciden las contrasenias"/> <br/>
                         <p:password class="texto" id="contr" value="#{agregaUsuario.contrasenia}" placeholder="Confirma" required="true"/> <br/>
                         <p:calendar class="texto" id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" required="true" placeholder="Fecha de nacimiento" requiredMessage="Por favor ingresa tu nombre"  /> <br/>
                         <p:commandButton class="texto" action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
                     </h:form>
+                </section>
+               
+                <aside>
+                    
+                    
+                    
+                    
                     <br/>
                     <p:separator />
                     <br/>
@@ -101,9 +112,11 @@
                         
                     </h:form>
                     </c:if>
-                    <p:link outcome="/user/perfil" value="Ver Perfil" rendered="#{not empty user}"/> 
+                    <p:link outcome="/user/perfiluser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'USER'}"/> <br/>
+                    <p:link outcome="/superuser/perfilsuperuser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/><br/>
+                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
                 </aside>
-            </main>
+            </div>
             <footer>
                 <h3>
                     Lorem ipsum dolor sit amet.
