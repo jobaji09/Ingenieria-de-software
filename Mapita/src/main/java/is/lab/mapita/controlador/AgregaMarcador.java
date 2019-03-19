@@ -8,6 +8,7 @@ package is.lab.mapita.controlador;
 import is.lab.mapita.modelo.Marcador;
 import is.lab.mapita.modelo.MarcadorDAO;
 import is.lab.mapita.modelo.Usuario;
+import is.lab.mapita.modelo.UsuarioDAO;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -85,14 +86,24 @@ public class AgregaMarcador implements Serializable {
     
     public String agregaMarcador(){
         MarcadorDAO mdb =new MarcadorDAO();
-        Marcador m = new Marcador();
-        Usuario u = (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        UsuarioDAO udb = new UsuarioDAO();
+        Marcador m = mdb.buscaMarcadorPorLatLng(latitud, longitud);
+        if(m!= null){
+            this.descripcion ="";
+            Mensajes.fatal("Ya existe un marcador con estas cordenadas \n" +"Lat: "+this.latitud +" Lng: "+this.longitud);
+            return "";
+        }
+        m = new Marcador();
+        ControladorSesion.UserLogged us= (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        Usuario u = udb.buscaPorCorreo(us.getCorreo());
         m.setDescripcion(descripcion);
         m.setLatitud(latitud);
         m.setLongitud(longitud);
         m.setUsuario(u);
         mdb.save(m);
-        return "/index?faces-redirect=true";
+        this.descripcion ="";
+        Mensajes.info("Se guardo el marcador");
+        return "";
     }
 
     public String getDescripcion() {

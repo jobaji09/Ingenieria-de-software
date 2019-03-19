@@ -12,7 +12,7 @@
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?TU-LLAVEAPI">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1o989BbFj_5xoJZ-x8iR1y_xOfnQAHG8">
             </script>
             
             
@@ -78,6 +78,10 @@
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                             <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                         </p:inputText> <br/>
+                        <p:selectOneMenu id="rol" value="#{agregaUsuario.rol}" style="width: 100%">
+                            <f:selectItem itemLabel="User" itemValue="user" />
+                            <f:selectItem itemLabel="SuperUser" itemValue="superuser" />
+                        </p:selectOneMenu>
                         <p:password class="texto" id="contrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia" match="contr" required="true" validatorMessage="No coinciden las contrasenias"/> <br/>
                         <p:password class="texto" id="contr" value="#{agregaUsuario.contrasenia}" placeholder="Confirma" required="true"/> <br/>
                         <p:calendar class="texto" id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" required="true" placeholder="Fecha de nacimiento" requiredMessage="Por favor ingresa tu nombre"  /> <br/>
@@ -102,6 +106,7 @@
                     </h:form>
                     </c:if>
                     <p:link outcome="/user/perfil" value="Ver Perfil" rendered="#{not empty user}"/> 
+                    <p:link outcome="/user/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
                 </aside>
             </main>
             <footer>
