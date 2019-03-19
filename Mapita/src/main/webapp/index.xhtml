@@ -105,8 +105,9 @@
                         
                     </h:form>
                     </c:if>
-                    <p:link outcome="/user/perfil" value="Ver Perfil" rendered="#{not empty user}"/> 
-                    <p:link outcome="/user/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
+                    <p:link outcome="/user/perfiluser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'USER'}"/> <br/>
+                    <p:link outcome="/superuser/perfilsuperuser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/><br/>
+                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
                 </aside>
             </main>
             <footer>

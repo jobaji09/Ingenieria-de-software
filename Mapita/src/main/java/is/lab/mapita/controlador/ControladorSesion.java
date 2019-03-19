@@ -50,11 +50,11 @@ public class ControladorSesion implements Serializable{
             if(user.getRol()==Rol.USER){
                 
                 context.getExternalContext().getSessionMap().put("user", u);
-                return "/user/perfil?faces-redirect=true";
+                return "/user/perfiluser?faces-redirect=true";
             }else{
                 
                 context.getExternalContext().getSessionMap().put("user", u);
-                return "/user/perfil?faces-redirect=true";
+                return "/superuser/perfilsuperuser?faces-redirect=true";
             }
         }
         Mensajes.error("NO hay usuarios con este correo"+this.correo);
