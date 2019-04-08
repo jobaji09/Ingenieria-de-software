@@ -12,6 +12,7 @@ CREATE TABLE marcador (
   descripcion text NOT NULL,
   longitud double precision NOT NULL,
   latitud double precision NOT NULL,
+  icon text NOT NULL,
   PRIMARY KEY (idmarcador),
   usuarioid integer REFERENCES usuario(idusuario)
 );
