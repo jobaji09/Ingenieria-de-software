@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg width="250" height="250">
+<g>
+<polygon points="75,62 175,62 125,211 " 
+ style=" fill:#0000FF;stroke:black;stroke-width:1;" /> 
+<circle cx="125" cy="62"  r="50" stroke="black" stroke-width="1"  fill="#0000FF" />
+<circle cx="125" cy="62"  r="25" stroke="black" stroke-width="1"  fill="#0000FF" />
+</g>
+</svg>
