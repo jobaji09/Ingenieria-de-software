@@ -8,6 +8,8 @@ and open the template in the editor.
     Author     : jonathan
 */
 
+
+
 *{
     padding: 0px;
     margin: 0px;
@@ -22,34 +24,52 @@ html,body{
 body *{
     
     box-sizing: border-box;
-    /*outline: 1px solid #abc;*/
+    outline: 1px solid #abc;
 }
 body{
     background-color: #85929e ;
 }
 
+:root{
+    --fondo :  #1da0c7;
+}
 header{
-    width: 97%;
-    height: 12%;
-    background-color: #bcbcbc;
-    padding: 10px;
-    margin: 10px auto;
+    width:100%;
+    height:5%;
+    background-color: var(--fondo);
+    /*padding: 10px;*/
+    /*margin: 10px auto;*/
     border-radius: 10px;
 }
+
 #link{
-    /*background-color: red;*/
-    width: 100%;
-    height: 50%;
+    float: left;
+    width: 20%;
+    height: 100%;
 }
+
 
 .nav{
-    width: 100%;
-    height: 50%;
-    /*background: black;*/
+    float: left;
+    width: 80%;
+    height: 100%;
+    background: black;
 }
-
-li{
-    list-style: none;
+header>form{
+    width: 100%;
+    height: 100%;
+}
+.menu{
+    background: rgba(0,0,0,0);
+    width: 100%;
+    height: 100%;
+}
+.menuitem{
+    background: white;
+    position: relative;
+    
+    
+    
 }
 
 #contenedor{
@@ -58,49 +78,27 @@ li{
     justify-content:flex-end;
 }
 main{
-    width: 97%;
-    height: 87vh;
-    margin: 5px auto;
+    width: 100%;
+    height: 90%;
+    /*margin: 5px auto;*/
     overflow:  hidden;
-    border-radius: 50%;
-    transition: border-radius 2s;
+    /*border-radius: 50%;*/
+    /*transition: border-radius 2s;*/
     
 }
-main:hover{
+/*main:hover{
     border-radius: 0%;
-}
-#main{
-    width: 97%;
-    height: 45vh;
-    margin: 5px auto;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-}
+}*/
 
 footer{
-    width: 97%;
-    background-color:#848484 ;
+    width: 100%;
+    height: 5%;
+    background-color: var(--fondo) ;
     color: white;
-    margin: 5px auto;
+    /*margin: 5px auto;*/
     border-radius: 10px;
 }
 
-#main>section{
-    width: 70%;
-    height: 100%;
-    float: left;
-    /*background-color: lavender;*/
-}
-
-#main>aside{
-    width: 30%;
-    height: 100%;
-    float: left;
-    /*background-color:  #f7cc09;*/
-    padding: 5px;
-
-}
 
 #colores{
     width: 59px;
@@ -119,10 +117,7 @@ footer{
     
 }
 
-/*#busqueda{
-    float: right;
-    
-}*/
+
 header>h1{
     float: left;
 }
@@ -157,10 +152,4 @@ header>h1{
 #mapa{
     width: 100%;
     height: 100%;
-}
-.formulario{
-    margin:5px auto;
-    width: 90%;
-    
-    border-radius: 10px;
 }

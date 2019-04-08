@@ -12,28 +12,28 @@ and open the template in the editor.
    
     <body>
         <ui:composition>
-            <div id="link">
+<!--            <div id="link">
                 <p:link outcome="/index.xhtml" > <h2>Mapita</h2></p:link>
             </div>
             <nav>
                 <ul id="contenedor">
-                    <li><p:link outcome="/user/perfiluser.xhtml"  rendered="#{user.rol eq 'USER'}" ><h2>Perfil</h2></p:link></li>
-                    <li><p:link outcome="/superuser/perfilsuperuser.xhtml"  rendered="#{user.rol eq 'SUPERUSER'}" ><h2>Perfil</h2></p:link></li>
+                    <li><p:link outcome="/user/perfiluser.xhtml"  rendered="{user.rol eq 'USER'}" ><h2>Perfil</h2></p:link></li>
+                    <li><p:link outcome="/superuser/perfilsuperuser.xhtml"  rendered="{user.rol eq 'SUPERUSER'}" ><h2>Perfil</h2></p:link></li>
                     <li> 
                         <h:form>
                             <p:commandButton action="/superuser/perfilsuperuser.xhtml" value="Perfil" rendered="{user.rol eq 'SUPERUSER'}"/>
                         </h:form>
                     </li>
                     <li>
-                        <h:form id="logout" rendered="#{not empty user}">
-                            <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                        <h:form id="logout" rendered="{not empty user}">
+                            <p:commandButton action="{controladorSesion.logout()}" value="logout"/>
                         </h:form>
                     </li>
                     <li>
                         <h:form id="busqueda">
                             <p:message for="search"/>
-                            <p:inputText type="search" id="search" value="#{buscaPorNombre.nombre}" required="true" requiredMessage="No hay personas sin nombre"/>
-                            <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre" update="busqueda"/>
+                            <p:inputText type="search" id="search" value="{buscaPorNombre.nombre}" required="true" requiredMessage="No hay personas sin nombre"/>
+                            <p:commandButton action="{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre" update="busqueda"/>
                         </h:form>
                     </li>
 
@@ -41,13 +41,14 @@ and open the template in the editor.
 
                 
                 
-            </nav>
-<!--            <h:form id="menuform">  
+            </nav>-->
+            <h:form id="menuform">  
                 <p:growl id="messages"/>
-                <p:menubar id="menubar" >
-                    <p:menuitem  value="Hola"/>
+                <p:menubar id="menubar"  styleClass="menu">
+                    <p:menuitem  value="Mapita" icon="pi pi-star" styleClass="menuitem" url="/"/>
+                    <p:menuitem value="Agrega Usuario" url="/agregaUsuario.xhtml" styleClass="menuitem"/>
                 </p:menubar>
-            </h:form>-->
+            </h:form>
         </ui:composition>
 
     </body>

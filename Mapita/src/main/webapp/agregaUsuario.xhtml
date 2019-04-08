@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Agrega Usuario</title>
+        <h:outputStylesheet name="css/estilos.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <header>
+                <ui:insert name="header" >
+		  <ui:include src="/template/header.xhtml" />
+		</ui:insert>
+                
+            </header>
+        <main>
+                <section>
+                    <div id="colores">
+                        <div id="rojo" class="color"></div>
+                        <div id="naranja" class="color"></div>
+                        <div id="amarillo" class="color"></div>
+                        <div id="verde" class="color"></div>
+                        <div id="azul" class="color"></div>
+                        <div id="anil" class="color"></div>
+                        <div id="violeta" class="color"></div>
+                    </div>
+                    
+                    <h2>
+                        <c:if test="#{ empty user}">
+                            Registrate
+                        </c:if>
+                        <c:if test="#{not empty user}">
+                            #{user.nombre}
+                        </c:if>
+                    </h2>
+                    
+                    <h:form rendered="#{empty user}" id="form" class="formulario">
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
+                        <p:inputText  class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
+                        <p:inputText class="texto" id="correo" value="#{agregaUsuario.correo}" required="true" placeholder="Correo" validatorMessage="Debe ser un correo valido"> 
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText> <br/>
+                        <p:selectOneMenu id="rol" value="#{agregaUsuario.rol}" style="width: 100%">
+                            <f:selectItem itemLabel="User" itemValue="user" />
+                            <f:selectItem itemLabel="SuperUser" itemValue="superuser" />
+                        </p:selectOneMenu>
+                        <p:password class="texto" id="contrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia" match="contr" required="true" validatorMessage="No coinciden las contrasenias"/> <br/>
+                        <p:password class="texto" id="contr" value="#{agregaUsuario.contrasenia}" placeholder="Confirma" required="true"/> <br/>
+                        <p:calendar class="texto" id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" required="true" placeholder="Fecha de nacimiento" requiredMessage="Por favor ingresa tu nombre"  /> <br/>
+                        <p:commandButton class="texto" action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+                    </h:form>
+                </section>
+               
+                <aside>
+                    
+                    
+                    
+                    
+                    <br/>
+                    <p:separator />
+                    <br/>
+                    
+                    <c:if test="#{ empty user}">
+                    <h:form id="login">
+
+                        <p:inputText class="texto" id="email" value="#{controladorSesion.correo}" placeholder="Correo" required="true" requiredMessage="Por favor ingresa tu correo" validatorMessage="Debe ser un correo valido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText> <br/>
+                        <p:message for="email"/>
+                        <p:password class="texto" id="password" value="#{controladorSesion.contrasenia}" placeholder="Contrasenia"  required="true" requiredMessage="Por favor ingresa tu contrasenia"/> <br/>
+                        <p:message for="password"/>
+                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="login" update="login" />
+                        
+                    </h:form>
+                    </c:if>
+                    <p:link outcome="/user/perfiluser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'USER'}"/> <br/>
+                    <p:link outcome="/superuser/perfilsuperuser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/><br/>
+                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
+                </aside>
+            </main>
+            <footer>
+                <ui:insert name="footer" >
+		  <ui:include src="/template/footer.xhtml" />
+		</ui:insert>
+            </footer>
+    </h:body>
+</html>
