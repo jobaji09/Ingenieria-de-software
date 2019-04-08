@@ -12,6 +12,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -38,6 +40,8 @@ public class VerMarcadores implements Serializable{
         for(Marcador m :marcadores){
             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
             Marker marcador = new Marker(cord,m.getUsuario().getNombre(),m.getDescripcion());
+            marcador.setIcon(m.getIcon());
+            System.out.println(m.getIcon());
             simpleModel.addOverlay(marcador);
         }
         

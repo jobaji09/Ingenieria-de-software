@@ -14,25 +14,36 @@ public class Marcador  implements java.io.Serializable {
      private String descripcion;
      private double longitud;
      private double latitud;
+     private String icon;
 
     public Marcador() {
     }
 
-	
-    public Marcador(int idmarcador, String descripcion, double longitud, double latitud) {
+    public Marcador(int idmarcador, String descripcion, double longitud, double latitud, String icon) {
         this.idmarcador = idmarcador;
         this.descripcion = descripcion;
         this.longitud = longitud;
         this.latitud = latitud;
+        this.icon = icon;
     }
-    public Marcador(int idmarcador, Usuario usuario, String descripcion, double longitud, double latitud) {
-       this.idmarcador = idmarcador;
-       this.usuario = usuario;
-       this.descripcion = descripcion;
-       this.longitud = longitud;
-       this.latitud = latitud;
+
+    public Marcador(int idmarcador, Usuario usuario, String descripcion, double longitud, double latitud, String icon) {
+        this.idmarcador = idmarcador;
+        this.usuario = usuario;
+        this.descripcion = descripcion;
+        this.longitud = longitud;
+        this.latitud = latitud;
+        this.icon = icon;
     }
-   
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public int getIdmarcador() {
         return this.idmarcador;
     }

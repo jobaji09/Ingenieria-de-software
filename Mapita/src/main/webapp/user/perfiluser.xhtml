@@ -15,7 +15,7 @@ and open the template in the editor.
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
             </script>
         </h:head>
         <h:body>
@@ -41,7 +41,9 @@ and open the template in the editor.
                         <p:inputNumber class="texto" decimalPlaces="6" id="longitud" value="#{agregaMarcador.longitud}" disabled="true"/>
                         <p:inputNumber  class="texto" id="latitud" decimalPlaces="6" value="#{agregaMarcador.latitud}" disabled="true"/>
                         <p:inputTextarea class="texto" id="descripcion" placeholder="Descripcion" value="${agregaMarcador.descripcion}"  required="true"/>
+                        <p:colorPicker value="#{agregaMarcador.color}" mode="inline"/>
                         <p:commandButton  id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}"/>
+                        
                     </h:form>
                 </section>
                 <aside>

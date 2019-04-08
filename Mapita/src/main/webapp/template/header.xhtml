@@ -18,10 +18,10 @@ and open the template in the editor.
             <nav>
                 <ul id="contenedor">
                     <li><p:link outcome="/user/perfiluser.xhtml"  rendered="#{user.rol eq 'USER'}" ><h2>Perfil</h2></p:link></li>
-                    <!--<li><p:link outcome="/superuser/perfilsuperuser.xhtml"  rendered="{user.rol eq 'SUPERUSER'}" ><h2>Perfil</h2></p:link></li>-->
+                    <li><p:link outcome="/superuser/perfilsuperuser.xhtml"  rendered="#{user.rol eq 'SUPERUSER'}" ><h2>Perfil</h2></p:link></li>
                     <li> 
                         <h:form>
-                            <p:commandButton action="/superuser/perfilsuperuser.xhtml" value="Perfil" rendered="#{user.rol eq 'SUPERUSER'}"/>
+                            <p:commandButton action="/superuser/perfilsuperuser.xhtml" value="Perfil" rendered="{user.rol eq 'SUPERUSER'}"/>
                         </h:form>
                     </li>
                     <li>
@@ -42,6 +42,12 @@ and open the template in the editor.
                 
                 
             </nav>
+<!--            <h:form id="menuform">  
+                <p:growl id="messages"/>
+                <p:menubar id="menubar" >
+                    <p:menuitem  value="Hola"/>
+                </p:menubar>
+            </h:form>-->
         </ui:composition>
 
     </body>
