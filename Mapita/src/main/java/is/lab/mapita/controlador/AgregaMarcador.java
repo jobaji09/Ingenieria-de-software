@@ -118,7 +118,9 @@ public class AgregaMarcador implements Serializable {
         m.setDescripcion(descripcion);
         m.setLatitud(latitud);
         m.setLongitud(longitud);
+        
         this.creaIcono(color,50,50);
+        System.out.println(color);
         m.setIcon("resources/images/"+color+".svg");
         m.setUsuario(u);
         mdb.save(m);
@@ -151,10 +153,10 @@ public class AgregaMarcador implements Serializable {
         s+="</g>\n"+"</svg>";
         
         try {
-            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-            String destination = (servletContext.getRealPath("/"))+"resources/images/";
-            System.out.println(destination);
-            FileOutputStream fileOut = new FileOutputStream(new File(destination + color+".svg"));
+             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String destino = (servletContext.getRealPath("/"))+"resources/images/";
+            System.out.println(destino);
+            FileOutputStream fileOut = new FileOutputStream(new File(destino + color+".svg"));
             OutputStreamWriter osOut = new OutputStreamWriter(fileOut);
             BufferedWriter out = new BufferedWriter(osOut);
             out.write(s);

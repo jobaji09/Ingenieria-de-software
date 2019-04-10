@@ -15,45 +15,37 @@ and open the template in the editor.
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputStylesheet name="css/uperfilestilos.css"/>
+            <h:outputScript name="js/info.js"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
             </script>
         </h:head>
         <h:body>
-            
             <header>
                 <ui:insert name="header" >
 		  <ui:include src="/template/header.xhtml" />
 		</ui:insert>
             </header>
             <main>
-                <p:gmap  draggable="false"  mapTypeControl="false" center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{agregaMarcador.simpleModel}">
-                        <p:ajax event="markerDrag" listener="#{agregaMarcador.onMarkerDrag}" update="form"/>
-                        <p:ajax event="pointSelect" listener="#{agregaMarcador.onPointSelect}" update="form mapa"/>
-                    </p:gmap>
-            </main>
-            <div id="main">
                 <section>
-                    <h3>Agrega un marcador</h3> 
-                    <h:form id="form" class="formulario">
-                        <p:messages id="messages" showDetail="true" closable="true">
-                            <p:autoUpdate />
-                        </p:messages>
-                        <p:inputNumber class="texto" decimalPlaces="6" id="longitud" value="#{agregaMarcador.longitud}" disabled="true"/>
-                        <p:inputNumber  class="texto" id="latitud" decimalPlaces="6" value="#{agregaMarcador.latitud}" disabled="true"/>
-                        <p:inputTextarea class="texto" id="descripcion" placeholder="Descripcion" value="${agregaMarcador.descripcion}"  required="true"/>
-                        <p:colorPicker value="#{agregaMarcador.color}" mode="inline"/>
-                        <p:commandButton  id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}"/>
+                     <h1 id="micuenta">Ver Mi Cuenta</h1>
+                    <p:sidebar id="sidebar" position="top" widgetVar="sidebar1" baseZIndex="10000">
+                        <h1>Mi cuenta</h1>
+                        <h2>Hola #{user.nombre} ! </h2><br/>
+                        <h2>Tu rol es : <b>#{user.rol}</b></h2>
+                        <h2>Tu correo es :<b> #{user.correo} </b></h2>
                         
-                    </h:form>
+                    </p:sidebar>
+                     <p:dataScroller value="#{verMarcadoresU.marcadores}" var="marcador">
+                        #{marcador} <br/>
+            
+                    </p:dataScroller>
                 </section>
-                <aside>
-                    <h1>Hola #{user.nombre} </h1><br/>
-                    <h2>Tu rol es #{user.rol}</h2>
-                    <h2>Tu correo es #{user.correo}</h2>
-                    
-                </aside>
-            </div>
-            <footer>
+                <p:gmap mapTypeControl="false" center="23.382390, -102.291477" zoom="6" type="roadmap" id="mapa" model="#{verMarcadoresU.simpleModel}">
+                </p:gmap>
+            </main>
+            
+             <footer>
                 <ui:insert name="footer" >
 		  <ui:include src="/template/footer.xhtml" />
 		</ui:insert>

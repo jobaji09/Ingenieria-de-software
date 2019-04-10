@@ -14,6 +14,8 @@ and open the template in the editor.
     <h:head>
         <title>Agrega Usuario</title>
         <h:outputStylesheet name="css/estilos.css"/>
+        <h:outputStylesheet name="css/auestilos.css"/>
+        <h:outputScript name="js/colores.js"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
@@ -22,32 +24,34 @@ and open the template in the editor.
 		  <ui:include src="/template/header.xhtml" />
 		</ui:insert>
                 
-            </header>
+        </header>
         <main>
-                <section>
-                    <div id="colores">
-                        <div id="rojo" class="color"></div>
-                        <div id="naranja" class="color"></div>
-                        <div id="amarillo" class="color"></div>
-                        <div id="verde" class="color"></div>
-                        <div id="azul" class="color"></div>
-                        <div id="anil" class="color"></div>
-                        <div id="violeta" class="color"></div>
-                    </div>
+            <section>
+                <div id="colores">
+                    <div id="rojo" class="color"></div>
+                    <div id="naranja" class="color"></div>
+                    <div id="amarillo" class="color"></div>
+                    <div id="verde" class="color"></div>
+                    <div id="azul" class="color"></div>
+                    <div id="anil" class="color"></div>
+                    <div id="violeta" class="color"></div>
+                </div>
                     
-                    <h2>
-                        <c:if test="#{ empty user}">
+<!--                    <h2>
+                        <c:if test="{ empty user}">
                             Registrate
                         </c:if>
-                        <c:if test="#{not empty user}">
-                            #{user.nombre}
+                        <c:if test="{not empty user}">
+                            {user.nombre}
                         </c:if>
                     </h2>
-                    
-                    <h:form rendered="#{empty user}" id="form" class="formulario">
-                        <p:messages id="messages" showDetail="true" closable="true">
-                            <p:autoUpdate />
-                        </p:messages>
+                    -->
+                    <h1>
+                        Agrega un Usuario a nuestra organizacion.
+                    </h1>
+                    <br/><p:separator/> <br/>
+                    <h:form id="form" class="formulario">
+                        
                         <p:inputText  class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
                         <p:inputText class="texto" id="correo" value="#{agregaUsuario.correo}" required="true" placeholder="Correo" validatorMessage="Debe ser un correo valido"> 
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -64,33 +68,7 @@ and open the template in the editor.
                     </h:form>
                 </section>
                
-                <aside>
-                    
-                    
-                    
-                    
-                    <br/>
-                    <p:separator />
-                    <br/>
-                    
-                    <c:if test="#{ empty user}">
-                    <h:form id="login">
-
-                        <p:inputText class="texto" id="email" value="#{controladorSesion.correo}" placeholder="Correo" required="true" requiredMessage="Por favor ingresa tu correo" validatorMessage="Debe ser un correo valido">
-                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                        </p:inputText> <br/>
-                        <p:message for="email"/>
-                        <p:password class="texto" id="password" value="#{controladorSesion.contrasenia}" placeholder="Contrasenia"  required="true" requiredMessage="Por favor ingresa tu contrasenia"/> <br/>
-                        <p:message for="password"/>
-                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="login" update="login" />
-                        
-                    </h:form>
-                    </c:if>
-                    <p:link outcome="/user/perfiluser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'USER'}"/> <br/>
-                    <p:link outcome="/superuser/perfilsuperuser" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/><br/>
-                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
-                </aside>
+                
             </main>
             <footer>
                 <ui:insert name="footer" >

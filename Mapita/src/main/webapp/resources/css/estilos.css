@@ -24,7 +24,7 @@ html,body{
 body *{
     
     box-sizing: border-box;
-    outline: 1px solid #abc;
+    /*outline: 1px solid #abc;*/
 }
 body{
     background-color: #85929e ;
@@ -49,12 +49,7 @@ header{
 }
 
 
-.nav{
-    float: left;
-    width: 80%;
-    height: 100%;
-    background: black;
-}
+
 header>form{
     width: 100%;
     height: 100%;
@@ -66,17 +61,14 @@ header>form{
 }
 .menuitem{
     background: white;
-    position: relative;
-    
-    
-    
 }
 
-#contenedor{
+
+/*#contenedor{
     display: flex;
     flex-direction: row;
     justify-content:flex-end;
-}
+}*/
 main{
     width: 100%;
     height: 90%;
@@ -84,11 +76,12 @@ main{
     overflow:  hidden;
     /*border-radius: 50%;*/
     /*transition: border-radius 2s;*/
+    background: -moz-linear-gradient(top,#00FFFF ,#FFCC00 );
+    background: -webkit-linear-gradient(top,#00FFFF ,#FFCC00 );
+    background: linear-gradient(top,#00FFFF ,#FFCC00 );
     
 }
-/*main:hover{
-    border-radius: 0%;
-}*/
+
 
 footer{
     width: 100%;
@@ -100,56 +93,9 @@ footer{
 }
 
 
-#colores{
-    width: 59px;
-    border: 1px solid black;
-    height: 10px;
-    margin: 5px auto;
-}
 
-.color{
-    width: 6.8px;
-    height: 6.6px;
-    border: 1px solid black;
-    float: left;
-    margin-top: 1px;
-    margin-left: 1.2px;
-    
-}
-
-
-header>h1{
-    float: left;
-}
-
-
-#rojo{
-    background: #FF0000;
-}
-#naranja{
-    background: #FF8000;
-}
-#amarillo{
-    background:#FFFF00;
-}
-#verde{
-    background: #40FF00;
-}
-
-#azul{
-     background: #0000FF;
-}
-#anil{
-    background: #8000FF;
-}
-#violeta{
-    background:#FF00BF ;
-}
 
 .texto{
-    width: 100%;
-}
-#mapa{
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    
 }

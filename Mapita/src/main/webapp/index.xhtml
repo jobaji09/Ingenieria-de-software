@@ -11,7 +11,8 @@
         <h:head>
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <h:outputScript name="js/colores.js"/>
+            
+            <h:outputStylesheet name="css/indexestilos.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
             </script>
             
@@ -27,7 +28,7 @@
             <main>
                 
                     
-                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"    mapTypeControl="false">
                         <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
@@ -35,6 +36,7 @@
                                     <h:outputText value="#{verMarcadores.marker.title}" />
                                     <br/>
                                     <h:outputText value="#{verMarcadores.marker.data}"/>
+                                    
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap>

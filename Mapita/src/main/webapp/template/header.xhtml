@@ -45,8 +45,15 @@ and open the template in the editor.
             <h:form id="menuform">  
                 <p:growl id="messages"/>
                 <p:menubar id="menubar"  styleClass="menu">
-                    <p:menuitem  value="Mapita" icon="pi pi-star" styleClass="menuitem" url="/"/>
-                    <p:menuitem value="Agrega Usuario" url="/agregaUsuario.xhtml" styleClass="menuitem"/>
+                    <p:menuitem  value="Mapita" icon="pi pi-star" styleClass="menuitem" action="/index?faces-redirect=true"/>
+                    <p:menuitem value="Agrega Usuario" url="/agregaUsuario.xhtml" styleClass="menuitem" rendered="#{empty user}"/>
+                    <p:menuitem styleClass="menuitem" action="/user/perfiluser?faces-redirect=true" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'USER'}"/>
+                    <p:menuitem styleClass="menuitem" action="/superuser/perfilsuperuser?faces-redirect=true" value="Ver Perfil" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
+                    <p:menuitem styleClass="menuitem" action="/user/agregamarcador?faces-redirect=true" value="Agrega Marcador" rendered="#{not empty user and user.rol eq 'USER'}"/>
+                    <p:menuitem  styleClass="menuitem" action="/superuser/eliminaMarcadores?faces-redirect=true" value="Elimina Marcadores" rendered="#{not empty user and user.rol eq 'SUPERUSER'}"/>
+                    <p:menuitem  value="Inicio Sesion" url="/iniciosesion.xhtml" styleClass="menuitem" rendered="#{empty user}"/>
+                    <p:menuitem value="Cerrar Sesion" action="#{controladorSesion.logout()}" styleClass="menuitem" rendered="#{not empty user}"/>
+                    
                 </p:menubar>
             </h:form>
         </ui:composition>

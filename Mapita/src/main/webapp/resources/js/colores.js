@@ -11,7 +11,7 @@ $(document).ready(function(){
        $(this).mouseover(function(){
            var color = $(this).css("background-color");
            console.log(color);
-           $('#main').css({'background':color});
+           $('section').css({'background':color});
        });
    });
 //   initMap();
