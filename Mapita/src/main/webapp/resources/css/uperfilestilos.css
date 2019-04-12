@@ -10,7 +10,7 @@ and open the template in the editor.
 
 section{
     float: left;
-    width: 30%;
+    width: 25%;
     height: 100%;
     background : #1f3445;
     color: white;
@@ -19,7 +19,7 @@ section{
 
 #mapa{
     float: left;
-    width: 70%;
+    width: 75%;
     height: 100%;
 }
 h1{

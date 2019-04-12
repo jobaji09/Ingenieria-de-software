@@ -7,12 +7,9 @@
 
 $('document').ready(function(){
     console.log("Cargado");
-    var sec = $('#micuenta');
-    sec.click(function(){
-        PF('sidebar1').show();
-//        console.log("Entra");
-    });
+   
     $('#sidebar').mouseleave(function(){
         PF('sidebar1').hide();
     });
+    
 });

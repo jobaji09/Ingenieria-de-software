@@ -16,8 +16,6 @@ and open the template in the editor.
         <h:outputStylesheet name="css/estilos.css"/>
         <h:outputStylesheet name="css/amestilos.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
-            </script>
     </h:head>
     <h:body>
         <header>
@@ -46,7 +44,7 @@ and open the template in the editor.
                     </h:form>
                 </section>
                 
-                <p:gmap    mapTypeControl="false" center="23.382390, -102.291477" zoom="6" type="roadmap" id="mapa" model="#{agregaMarcador.simpleModel}">
+                <p:gmap    mapTypeControl="false" center="#{agregaMarcador.centro.lat},#{agregaMarcador.centro.lng}" zoom="5" type="roadmap" id="mapa" model="#{agregaMarcador.simpleModel}">
                     <p:ajax event="markerDrag" listener="#{agregaMarcador.onMarkerDrag}" update="form:longitud form:latitud"/>
                     <p:ajax event="pointSelect" listener="#{agregaMarcador.onPointSelect}" update="form:longitud form:latitud mapa"/>
                 </p:gmap>

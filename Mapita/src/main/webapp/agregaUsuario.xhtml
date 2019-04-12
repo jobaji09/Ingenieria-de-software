@@ -51,7 +51,7 @@ and open the template in the editor.
                     </h1>
                     <br/><p:separator/> <br/>
                     <h:form id="form" class="formulario">
-                        
+                        <p:growl id="growl" showDetail="true" />
                         <p:inputText  class="texto" id="nombre" value="#{agregaUsuario.nombre}" required="true" placeholder="Nombre"  validatorMessage="Por favor ingresa tu nombre" requiredMessage="Por favor ingresa tu nombre"/> <br/>
                         <p:inputText class="texto" id="correo" value="#{agregaUsuario.correo}" required="true" placeholder="Correo" validatorMessage="Debe ser un correo valido"> 
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -64,7 +64,7 @@ and open the template in the editor.
                         <p:password class="texto" id="contrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia" match="contr" required="true" validatorMessage="No coinciden las contrasenias"/> <br/>
                         <p:password class="texto" id="contr" value="#{agregaUsuario.contrasenia}" placeholder="Confirma" required="true"/> <br/>
                         <p:calendar class="texto" id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" required="true" placeholder="Fecha de nacimiento" requiredMessage="Por favor ingresa tu nombre"  /> <br/>
-                        <p:commandButton class="texto" action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+                        <p:commandButton class="texto" action="#{agregaUsuario.agregaUsuario()}" value="Registrame" update="growl form" />
                     </h:form>
                 </section>
                

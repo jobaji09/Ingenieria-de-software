@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -32,6 +33,8 @@ public class VerMarcadores implements Serializable{
     
     private Marker marker;
     
+    private Marcador marcador;
+    
     @PostConstruct
     public void verMarcadores(){
         simpleModel = new DefaultMapModel();
@@ -39,7 +42,7 @@ public class VerMarcadores implements Serializable{
         List<Marcador> marcadores = mdb.findAll();
         for(Marcador m :marcadores){
             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getUsuario().getNombre(),m.getDescripcion());
+            Marker marcador = new Marker(cord,m.getDescripcion());
             marcador.setIcon(m.getIcon());
             System.out.println(m.getIcon());
             simpleModel.addOverlay(marcador);
@@ -53,12 +56,21 @@ public class VerMarcadores implements Serializable{
     
     public void onMarkerSelect(OverlaySelectEvent event) {
        marker =(Marker) event.getOverlay();
+       MarcadorDAO mdb = new MarcadorDAO();
        
+       this.marcador = mdb.buscaMarcadorPorLatLng(marker.getLatlng().getLat(),marker.getLatlng().getLng());
+       PrimeFaces current = PrimeFaces.current();
+       current.executeScript("PF('dlg').show();");
     }
 
     public Marker getMarker() {
         return marker;
     }
+
+    public Marcador getMarcador() {
+        return marcador;
+    }
+    
     
     
 }

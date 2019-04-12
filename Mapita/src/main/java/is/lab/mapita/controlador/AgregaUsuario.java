@@ -11,13 +11,14 @@ import is.lab.mapita.modelo.UsuarioDAO;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author jonathan
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AgregaUsuario {
     private String nombre;
     private String correo;
@@ -67,7 +68,14 @@ public class AgregaUsuario {
     }
     
     public void agregaUsuario(){
-        Usuario u = new Usuario();
+        UsuarioDAO udb = new UsuarioDAO();
+        Usuario u = udb.buscaPorCorreo(correo);
+        if(u !=null){
+            Mensajes.fatal("Ya existe un usuario con ese correo");
+            return;
+        }
+            
+        u = new Usuario();
         u.setNombre(nombre);
         u.setCorreo(correo);
         u.setContrasenia(contrasenia);
@@ -77,10 +85,14 @@ public class AgregaUsuario {
         }else{
             u.setRol(Rol.SUPERUSER);
         }
-            
-        UsuarioDAO udb = new UsuarioDAO();
-        udb.save(u);
         
+        
+        udb.save(u);
+        Mensajes.info("Se guardo el usuario correctamente");
+        this.nombre="";
+        this.correo="";
+        this.fechanacimiento=null;
+                
     }
     
 }

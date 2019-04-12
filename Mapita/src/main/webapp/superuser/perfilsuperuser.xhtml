@@ -16,9 +16,6 @@ and open the template in the editor.
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputStylesheet name="css/perfilsuestilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
-            </script>
-            
         </h:head>
         <h:body>
             
@@ -29,31 +26,15 @@ and open the template in the editor.
                 
             </header>
             <main>
-                <aside>
-                    
-                </aside>
-                <section id="principal">
-                    <div id="usuarios">
-                        <h2>Todos los usuarios registrados</h2>
-                            <h:form>
-                            <p:dataScroller value="#{verUsuarios.usuarios}" var="usuario" id="datascroller">
-                                
-                                <p:panelGrid columns="3" layout="grid" >
-                                    <h:outputText value="#{usuario.nombre}"/>
-                                    <h:outputText value="#{usuario.correo}"/>
-                                    
-                                    <p:commandButton value="EliminaUsuario"/>
-                                    
-                                </p:panelGrid>
-                            </p:dataScroller>        
-                            </h:form>
-                            
-                            
-                        
-                    </div>
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model=""  draggable="false"  mapTypeControl="false">
-                        
-                    </p:gmap>
+                <section class='contenedor'>
+                    <h:form >
+                        <p:commandButton styleClass="boton" action="/superuser/verUsuarios?redirect=true" value="Ver Usuarios"/>
+                    </h:form>
+                </section>
+                <section class='contenedor'>
+                    <h:form >
+                        <p:commandButton styleClass="boton" action="/superuser/verMarcadores?redirect=true" value="Ver Marcadores"/>
+                    </h:form>
                 </section>
             </main>
             

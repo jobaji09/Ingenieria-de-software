@@ -42,11 +42,13 @@ public class AgregaMarcador implements Serializable {
     private double latitud;
     private String descripcion;
     private String color;
-        
+    private LatLng centro;    
+    
     @PostConstruct
     public void init(){
+        centro = new LatLng(23.382390, -102.291477);
         simpleModel = new DefaultMapModel();
-        marcador = new Marker(new LatLng(23.382390, -102.291477),"Arrastrame");
+        marcador = new Marker(centro,"Arrastrame");
         marcador.setDraggable(true);
 //        marcador.setClickable(true);
         simpleModel.addOverlay(marcador);
@@ -60,6 +62,10 @@ public class AgregaMarcador implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public LatLng getCentro() {
+        return centro;
     }
 
     
@@ -84,6 +90,7 @@ public class AgregaMarcador implements Serializable {
         marcador.setLatlng(latlng);
         this.latitud = latlng.getLat();
         this.longitud = latlng.getLng();
+        this.centro = latlng;
         
     }
     
@@ -170,7 +177,7 @@ public class AgregaMarcador implements Serializable {
     }
 
     private String creaCirculo(int x ,int y , int r,String color,boolean stroke){
-        String s = stroke ? "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"black\" stroke-width=\"1\"  fill=\"" + color + "\" />\n" : "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"black\" stroke-width=\"0\"  fill=\"" + color + "\" />\n";
+        String s = stroke ? "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"white\" stroke-width=\"1\"  fill=\"" + color + "\" />\n" : "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"black\" stroke-width=\"0\"  fill=\"" + color + "\" />\n";
         return  s;
 
     }

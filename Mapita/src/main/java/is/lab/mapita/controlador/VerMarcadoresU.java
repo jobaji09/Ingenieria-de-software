@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -33,6 +34,8 @@ public class VerMarcadoresU implements Serializable{
     
     private Marker marker;
     
+    private Marcador marcador;
+    
     private Set marcadores;
     @PostConstruct
     public void verMarcadores(){
@@ -44,10 +47,9 @@ public class VerMarcadoresU implements Serializable{
         for(Object o :marcadores){
             Marcador m = (Marcador)o;
             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getUsuario().getNombre(),m.getDescripcion());
-            marcador.setIcon("../"+m.getIcon());
-            System.out.println(marcador.getIcon());
-            this.simpleModel.addOverlay(marcador);
+            Marker mark = new Marker(cord,m.getDescripcion());
+            mark.setIcon("../"+m.getIcon());
+            this.simpleModel.addOverlay(mark);
         }
         
     }
@@ -58,7 +60,11 @@ public class VerMarcadoresU implements Serializable{
     
     public void onMarkerSelect(OverlaySelectEvent event) {
        marker =(Marker) event.getOverlay();
+       MarcadorDAO mdb = new MarcadorDAO();
        
+       this.marcador = mdb.buscaMarcadorPorLatLng(marker.getLatlng().getLat(),marker.getLatlng().getLng());
+       PrimeFaces current = PrimeFaces.current();
+       current.executeScript("PF('dlg').show();");
     }
 
     public Marker getMarker() {
@@ -69,6 +75,15 @@ public class VerMarcadoresU implements Serializable{
         return marcadores;
     }
     
+    public Marcador getMarcador() {
+        return marcador;
+    }
     
+    public void eliminaMarcador(){
+        MarcadorDAO mdb = new MarcadorDAO();
+        this.simpleModel.getMarkers().remove(this.marker);
+        mdb.delete(this.marcador);
+        Mensajes.info("Se a borrado el marcador\n"+this.marker.getLatlng());
+    }
     
 }

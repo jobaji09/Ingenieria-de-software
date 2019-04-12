@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.map.OverlaySelectEvent;
+import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.Marker;
 
 /**
@@ -67,6 +68,19 @@ public class EliminaMarcador {
         mdb.delete(m);
         
         return "/superuser/eliminaMarcadores?faces-redirect=true";
+    }
+    
+    public void eliminaMarcadorv3(LatLng latlng){
+        MarcadorDAO mdb = new MarcadorDAO();
+        Marcador m = mdb.buscaMarcadorPorLatLng(latlng.getLat(), latlng.getLng());
+          if(m == null){
+            Mensajes.error("no existe ningun marcador");
+            return;
+        }
+          
+        
+        mdb.delete(m);
+        Mensajes.info("Se a borrado el marcador\n"+latlng);
     }
     
 }

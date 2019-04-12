@@ -12,10 +12,7 @@
             <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
             
-            <h:outputStylesheet name="css/indexestilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
-            </script>
-            
+            <h:outputStylesheet name="css/indexestilos.css"/>            
             
         </h:head>
         <h:body>
@@ -29,17 +26,23 @@
                 
                     
                 <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"    mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
-                        <p:gmapInfoWindow id="ventanaInfo">
-                             <p:outputPanel style="text-align: left; display: block; margin: auto">
- 
-                                    <h:outputText value="#{verMarcadores.marker.title}" />
-                                    <br/>
-                                    <h:outputText value="#{verMarcadores.marker.data}"/>
-                                    
-                            </p:outputPanel>
-                        </p:gmapInfoWindow>
-                    </p:gmap>
+                    <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}" update="marcadordlg"/> 
+                </p:gmap>
+                <p:dialog id="marcadordlg" widgetVar="dlg" modal="true" header="Ver marcador" showEffect="bounce" hideEffect="explode">
+                    
+                    <p:fieldset legend="Agregado por #{verMarcadores.marcador.usuario.nombre}" style="margin-bottom:20px">
+                        <h:panelGrid  columns="2" cellpadding="10px">
+                        <p:graphicImage url="#{verMarcadores.marcador.icon}"/>
+                        <h:panelGrid  columns="2" cellpadding="10px">
+                            <h:outputText value="Su posicion es : "/>
+                            <h:outputText value="#{verMarcadores.marker.latlng}" style="font-weight: bold;" />
+                            <h:outputText value="La descripcion es la siguiente : "/>
+                            <h:outputText value="#{verMarcadores.marcador.descripcion}" style="font-weight: bold;"/>
+                        </h:panelGrid>
+                       </h:panelGrid> 
+                    </p:fieldset>
+                    
+                </p:dialog> 
                 
             </main>
             
