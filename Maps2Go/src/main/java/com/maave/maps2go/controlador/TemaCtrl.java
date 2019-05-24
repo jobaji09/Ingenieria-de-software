@@ -11,6 +11,7 @@ import com.maave.maps2go.vista.TemaExistenteIH;
 import com.maave.maps2go.vista.CampoVacioIH;
 import com.maave.maps2go.vista.ColorExistenteIH;
 import com.maave.maps2go.vista.MarcadorAgregadoIH;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -29,7 +30,7 @@ import org.primefaces.model.map.Marker;
 
 @ManagedBean
 @ViewScoped
-public class TemaCtrl {
+public class TemaCtrl implements Serializable{
 
     private String color;
     private String tipoTema;
@@ -127,15 +128,21 @@ public class TemaCtrl {
 
     public String agregarTema() {
         TemaDAO tdb = new TemaDAO();
-        if(tipoTema.compareTo("")==0 || color.compareTo("")==0 || descripcion.compareTo("")==0 || datosUtiles.compareTo("") == 0){
+        if(tipoTema.compareTo("")==0 || 
+                color==null || 
+                descripcion.compareTo("")==0 || 
+                datosUtiles.compareTo("") == 0){
             CampoVacioIH vacio = new CampoVacioIH();
             vacio.mostrarMensaje();
-            //System.out.println("Campo Vacio");
-            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"WARNING!", "Campo Vacio"));
+//            
+//            System.out.println("Campo Vacio");
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"WARNING!", "Campo Vacio"));
+            return "";
         }else if(tdb.existeTema(tipoTema)){
             TemaExistenteIH existe = new TemaExistenteIH();
             existe.mostrarMensaje();
            //System.out.println("Ya existe");
+           return "";
         }else if(tdb.existeColor(color)){
             ColorExistenteIH existeC = new ColorExistenteIH();
             existeC.mostrarMensaje();            

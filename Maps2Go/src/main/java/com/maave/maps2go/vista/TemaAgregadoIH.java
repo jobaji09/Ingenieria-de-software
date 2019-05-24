@@ -1,6 +1,7 @@
 package com.maave.maps2go.vista;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 public class TemaAgregadoIH {
@@ -18,7 +19,10 @@ public class TemaAgregadoIH {
 
     public void mostrarMensaje() {
         this.mensaje = ("Tema agregado con éxito.");
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,"¡Éxito!", mensaje));      
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Ey!", mensaje));
+        context.getExternalContext().getFlash().setKeepMessages(true);
+//        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,"¡Éxito!", mensaje));      
     }
 
 }

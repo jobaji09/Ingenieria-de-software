@@ -15,7 +15,9 @@ and open the template in the editor.
         <title>Maps2Go</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet name="css/estilos.css"/>
-        <script type="text/javascript" src="PKEY"/>
+        <!--<script type="text/javascript" src="PKEY"/>-->
+         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF3f_PEYq7zDy-tePJAoFnx0qxWOS4wqU"/>
+    
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>        
     </h:head>
 
@@ -31,6 +33,7 @@ and open the template in the editor.
             </div>
         </div>
         <h:form>
+            <p:growl id="msgs" showDetail="true"/>
             <p:commandButton value="Actualizar cuenta" action="actualizarCuentaIH"/>
             <p:commandButton value="BorrarCuenta" action="#{usuarioCtrl.borrarCuenta()}" styleClass="text-box">
                 <p:confirm header="Confirmacion" message="¿Deseas borrar tu cuenta? Este cambio no se revertirá."/>

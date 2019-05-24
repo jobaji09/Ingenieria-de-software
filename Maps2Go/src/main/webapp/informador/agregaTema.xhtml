@@ -15,7 +15,8 @@ and open the template in the editor.
         <title>Maps2Go</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet name="css/estilos.css"/>
-        <script type="text/javascript" src="PKEY"/>
+        <!--<script type="text/javascript" src="PKEY"/>-->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF3f_PEYq7zDy-tePJAoFnx0qxWOS4wqU"/>
     </h:head>
 
     <f:view>
@@ -41,7 +42,7 @@ and open the template in the editor.
                         </h:panelGrid> 
                         <p:inputTextarea  id="descripcion" rows="6" cols="20" value="#{temaCtrl.descripcion}" placeholder="Descripción"/><br></br>
                         <p:inputTextarea  id="datos" rows="6" cols="20" value="#{temaCtrl.datosUtiles}" placeholder="Datos útiles" /> <br></br><br></br>
-                        <p:commandButton id="agregaMarcador" value="Aceptar" action="#{temaCtrl.agregarTema()}" update="form" ajax="false" styleClass="text-box2"/><br></br>
+                        <p:commandButton id="agregaMarcador" value="Aceptar" action="#{temaCtrl.agregarTema()}" update="form:msgs" ajax="false" styleClass="text-box2"/><br></br>
                     </h:form>
                 </div>
             </div>
@@ -49,8 +50,8 @@ and open the template in the editor.
                 <div class="ui-g-12">
                     <h:form prependId="false">        
                         <p:gmap id="map" center="23.382390, -102.291477" zoom="5" type="roadmap" style="width:100%;height:500px" model="#{temaCtrl.simpleModel}">
-                            <p:ajax event="markerDrag" listener="#{temaCtrl.onMarkerDrag}" update="form"/>
-                            <p:ajax event="pointSelect" listener="#{temaCtrl.onPointSelect}" update="form map"/>
+                            <p:ajax event="markerDrag" listener="#{temaCtrl.onMarkerDrag}" update="form:longitud form:latitud"/>
+                            <p:ajax event="pointSelect" listener="#{temaCtrl.onPointSelect}" update="form:longitud form:latitud map"/>
                         </p:gmap>
                     </h:form>
                 </div>

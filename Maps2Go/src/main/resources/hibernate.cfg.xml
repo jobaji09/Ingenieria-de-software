@@ -44,8 +44,8 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/maps2go</property>
-    <property name="hibernate.connection.username">maave</property>
-    <property name="hibernate.connection.password">maave</property>
+    <property name="hibernate.connection.username">developer</property>
+    <property name="hibernate.connection.password">qwerty</property>
     <mapping resource="com/maave/maps2go/modelo/Comentario.hbm.xml"/>
     <mapping resource="com/maave/maps2go/modelo/Usuario.hbm.xml"/>
     <mapping resource="com/maave/maps2go/modelo/Tema.hbm.xml"/>

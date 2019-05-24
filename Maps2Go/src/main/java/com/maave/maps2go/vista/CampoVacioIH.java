@@ -25,11 +25,11 @@ public class CampoVacioIH {
     public void mostrarMensaje() {
         this.mensaje = "Por favor ingresa todos los datos";
         
-        //FacesContext context = FacesContext.getCurrentInstance();
-        //context.getExternalContext().getFlash().setKeepMessages(true);
-        //context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Ey!", mensaje));
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Ey!", mensaje));
+        context.getExternalContext().getFlash().setKeepMessages(true);
         //context.showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "¡Ey!", mensaje));
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,"¡Ey!", mensaje));
+        //RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,"¡Ey!", mensaje));
     }
 
 }
